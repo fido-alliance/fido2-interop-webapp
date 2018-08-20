@@ -7,7 +7,8 @@
         /* CHANGE ME TO YOUR SERVERS URL */
         /* CHANGE ME TO YOUR SERVERS URL */
         /* CHANGE ME TO YOUR SERVERS URL */
-        window.serverURL = 'https://webauthn.org';
+        window.vendorName = 'EXAMPLE CORPORATION'
+        window.serverURL  = 'https://webauthn.org';
         /* CHANGE ME TO YOUR SERVERS URL */
         /* CHANGE ME TO YOUR SERVERS URL */
         /* CHANGE ME TO YOUR SERVERS URL */
@@ -98,6 +99,7 @@
 </head>
 <body>
     <div class="container">
+        <h3 class="vendor-name"></h3>
         <div class="row mimimise" style="height: 150px;">
             <div class="column">
                 <div class="formcontainer register">
@@ -484,7 +486,10 @@
             $('.show-username').html(username)
         }
 
-        $(document).ready(() => regenerateNames())
+        $(document).ready(() => {
+            $('.vendor-name').html(vendorName);
+            regenerateNames()
+        })
 /* ---- HELPERS END ---- */
 
         let tests = {
