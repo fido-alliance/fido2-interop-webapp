@@ -557,7 +557,7 @@
                 return getChallenge('assertion', {displayName, username})
                     .then((response) => {
                         let publicKey = preformatGetAssertReq(response);
-                        publicKey = {'challenge': publicKey.challenge}
+                        publicKey = {'challenge': publicKey.challenge, 'rpId': publicKey.rpId}
                         return navigator.credentials.get({ publicKey })
                     })
                     .then((response) => {
@@ -596,7 +596,7 @@
                     .then(() => getChallenge('assertion', {displayName, username}))
                     .then((response) => {
                         let publicKey = preformatGetAssertReq(response);
-                        publicKey = {'challenge': publicKey.challenge}
+                        publicKey = {'challenge': publicKey.challenge, 'rpId': publicKey.rpId}
                         return navigator.credentials.get({ publicKey })
                     })
                     .then((response) => {
