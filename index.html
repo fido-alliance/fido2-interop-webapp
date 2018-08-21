@@ -173,6 +173,24 @@
                     </a>
                 </div>
             </div>
+            <div class="column">
+                <div class="formcontainer register">
+                    <h4>Test MakeCredential for Platform Authr</h4>
+                    <a href="#" class="button button-primary button" data-testid="makeCredentialPlatform">
+                        <span>Run</span>
+                        <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="column">
+                <div class="formcontainer register">
+                    <h4>Test MakeCredential with RK for Platform Authr</h4>
+                    <a href="#" class="button button-primary button" data-testid="makeCredentialRKPlatform">
+                        <span>Run</span>
+                        <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
@@ -469,7 +487,8 @@
                     $($(this).children('span')[0]).html('Success!')
                     $($(this).children('div')[0]).addClass('hidden')
                 })
-                .catch(() => {
+                .catch((error) => {
+                    console.error('Error while running test! The message is: ', error)
                     $(this).removeClass('success running')
                     $(this).addClass('failed')
                     $($(this).children('span')[0]).html('FAIL!')
@@ -590,6 +609,41 @@
                 let attestation = 'none';
 
                 return getChallenge('attestation', { displayName, username, attestation })
+                    .then((response) => {
+                        let publicKey = preformatMakeCredReq(response);
+                        return navigator.credentials.create({ publicKey })
+                    })
+                    .then((response) => {
+                        let makeCredResponse = publicKeyCredentialToJSON(response);
+                        return sendWebAuthnResponse('attestation', makeCredResponse)
+                    })
+            },
+            'makeCredentialPlatform': () => {
+                regenerateNames()
+                let attestation = 'direct';
+                let authenticatorSelection = {
+                    'authenticatorAttachment': 'platform'
+                }
+
+                return getChallenge('attestation', {displayName, username, attestation, authenticatorSelection})
+                    .then((response) => {
+                        let publicKey = preformatMakeCredReq(response);
+                        return navigator.credentials.create({ publicKey })
+                    })
+                    .then((response) => {
+                        let makeCredResponse = publicKeyCredentialToJSON(response);
+                        return sendWebAuthnResponse('attestation', makeCredResponse)
+                    })
+            },
+            'makeCredentialRKPlatform': () => {
+                regenerateNames()
+                let attestation = 'direct';
+                let authenticatorSelection = {
+                    'authenticatorAttachment': 'platform',
+                    'requireResidentKey': true
+                }
+
+                return getChallenge('attestation', {displayName, username, attestation, authenticatorSelection})
                     .then((response) => {
                         let publicKey = preformatMakeCredReq(response);
                         return navigator.credentials.create({ publicKey })
