@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FIDO2 Interop</title>
+    <title>FIDO2 Interop v1.0</title>
     <script>
         /* CHANGE ME TO YOUR SERVERS URL */
         /* CHANGE ME TO YOUR SERVERS URL */
@@ -279,7 +279,7 @@
         })();
     </script>
     <script>
-/* ---- HELPERS START ---- */
+/* ---- HELPERS START ---- */    
         /**
          * Returns a random integer between min (inclusive) and max (inclusive)
          * @param  {Number} min - min integer
@@ -287,6 +287,7 @@
          * @return {Number}     - random integer
          */
         var generateSecureRandomInt = (min, max) => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             /* FROM https://stackoverflow.com/a/34577886 */
             // A buffer with just the right size to convert to Float64
             let buffer = new ArrayBuffer(8);
@@ -312,6 +313,7 @@
          * @return {String}
          */
         var generateRandomWord = () => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             let words = ['plum', 'lemon', 'huckleberry', 'pear', 'lime', 'mango', 'coconut', 'jujube', 'dragonfruit', 'blackberry', 'starfruit', 'kiwi', 'kumquat', 'clementine', 'orange', 'passonfruit', 'avocado', 'guava', 'grapefruit', 'apple', 'blueberry', 'cherry', 'boysenberry', 'strawberry', 'papaya', 'nectarine', 'peach', 'cantaloupe', 'satsuma', 'raspberry', 'apricot', 'pineapple', 'grape', 'tomato', 'honeydew', 'watermelon', 'date', 'tangerine', 'banana', 'fig', 'pomegranate', 'porter', 'door', 'number', 'didactic', 'back', 'unaccountable', 'unfasten', 'poised', 'vague', 'tumble', 'obedient', 'thoughtless', 'swanky', 'burst', 'double', 'yam', 'motion', 'pin', 'level', 'mute', 'order', 'shame', 'impulse', 'death', 'murky', 'type', 'gather', 'abhorrent', 'industrious', 'legs', 'connection', 'magnificent', 'voyage', 'brake', 'wide', 'choke', 'wait', 'fancy', 'eyes', 'unit', 'elderly', 'nest', 'spiritual', 'spark', 'disgusting', 'excuse', 'teaching', 'hook', 'island', 'disapprove', 'hapless', 'scintillating', 'noiseless', 'switch', 'irate', 'close', 'milky', 'messup', 'mighty', 'guide', 'straw', 'warm', 'bird', 'soothe', 'hair', 'fork', 'shiny', 'distribution', 'found', 'smart', 'aloof', 'scratch', 'loose', 'flame', 'skirt', 'cycle', 'wilderness', 'society', 'relation', 'helpless', 'successful', 'wrap', 'pine', 'whispering', 'bouncy', 'communicate', 'previous', 'table', 'dinner', 'cause', 'spurious', 'squeamish', 'windy', 'grab', 'rejoice', 'extend', 'mix', 'afford', 'blue-eyed', 'children']
 
             let randomIndex  = generateSecureRandomInt(0, words.length - 1);
@@ -330,6 +332,7 @@
          * @return {String}
          */
         var generateRandomDomain = () => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             let domain = `${generateRandomWord()}${generateRandomWord()}`;
 
             let randomIndex = generateSecureRandomInt(0, listOfCountryCodes.length - 1);
@@ -343,6 +346,7 @@
          * @return {String}
          */
         var generateRandomName = () => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             let names = ['Aleisha Neyman', 'Freddie Montijo', 'Xavier Matis', 'Louie Houtz', 'Julianna Hollman', 'Rosalia Jarret', 'Star Euell', 'Katelynn Dunmore', 'Stasia Britain', 'Eleanor Duchene', 'Bennie Moneypenny', 'Shenika Olin', 'Tamara Tineo', 'Marleen Lafontaine', 'Marivel Placencia', 'Sharda Manier', 'Latosha Sabatini', 'Dylan Wayne', 'Stanford Mcguffie', 'Angel Plaza', 'Tona Dandridge', 'Tony Alber', 'Domitila Headen', 'Lucrecia Grenz', 'Clarice Zemlicka', 'Donetta Lukasiewicz', 'Leona Grayson', 'Christena Yoshimura', 'Latashia Lanoue', 'Lu Hopps', 'Christiana Muntz', 'Johnetta Papa', 'Lora Chasse', 'Josiah Turman', 'Shala Dull', 'Alec Palazzo', 'Sharyl Seguin', 'Taren Gatewood', 'Gretchen Mo', 'Lakeesha Hemstreet', 'Marcelle Ritchie', 'Deandra Sauer', 'Nannie Fenner', 'Victor Callaway', 'Tyrell Castro', 'Rosamond Carron', 'Megan Vinzant', 'Gertrud Fridley', 'Mozell Shue', 'Kanisha Vanmeter', 'Commander Shepard', 'Bilbo Baggins', 'Peregrin Tuk']
 
             let randomIndex  = generateSecureRandomInt(0, names.length - 1);
@@ -356,6 +360,7 @@
          * @return {String}      [description]
          */
         var generateEmailFromNameAndDomain = (name, domain) => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             let base = '';
             if(generateSecureRandomInt(0, 1))
                 base = name.replace(/\s/, '').toLowerCase()
@@ -371,6 +376,7 @@
          * @return {Object}            - JSON encoded publicKeyCredential
          */
         var publicKeyCredentialToJSON = (pubKeyCred) => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             if(pubKeyCred instanceof Array) {
                 let arr = [];
                 for(let i of pubKeyCred)
@@ -402,6 +408,7 @@
          * @return {Uint8Array} - random string
          */
         var generateRandomBuffer = (len) => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             len = len || 32;
 
             let randomBuffer = new Uint8Array(len);
@@ -414,6 +421,7 @@
          * Decodes arrayBuffer required fields.
          */
         var preformatMakeCredReq = (makeCredReq) => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             makeCredReq.challenge = base64url.decode(makeCredReq.challenge);
             makeCredReq.user.id   = base64url.decode(makeCredReq.user.id);
 
@@ -424,6 +432,7 @@
          * Decodes arrayBuffer required fields.
          */
         var preformatGetAssertReq = (getAssert) => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             getAssert.challenge = base64url.decode(getAssert.challenge);
             
             for(let allowCred of getAssert.allowCredentials) {
@@ -434,6 +443,7 @@
         }
 
         let getChallenge = (attestationOrAssertion, formBody) => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             return fetch(`${serverURL}/${attestationOrAssertion}/options`, {
                 method: 'POST',
                 credentials: 'include',
@@ -452,6 +462,7 @@
         }
 
         let sendWebAuthnResponse = (attestationOrAssertion, formBody) => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             return fetch(`${serverURL}/${attestationOrAssertion}/result`, {
                 method: 'POST',
                 credentials: 'include',
@@ -470,6 +481,7 @@
         }
 
         $('.button-primary').click(function(e) {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             e.preventDefault()
             let testid = $(this).data('testid');
 
@@ -497,6 +509,7 @@
         })
 
         let regenerateNames = () => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             window.displayName = generateRandomName()
             window.domain      = generateRandomDomain()
             window.username    = generateEmailFromNameAndDomain(displayName, domain);
@@ -506,6 +519,7 @@
         }
 
         $(document).ready(() => {
+            /* ----- DO NOT MODIFY THIS CODE ----- */
             $('.vendor-name').html(vendorName);
             regenerateNames()
         })
@@ -513,6 +527,7 @@
 
         let tests = {
             'makeCredential': () => {
+                /* ----- DO NOT MODIFY THIS CODE ----- */
                 let attestation = 'direct';
 
                 return getChallenge('attestation', {displayName, username, attestation})
@@ -526,6 +541,7 @@
                     })
             },
             'getAssertion': () => {
+                /* ----- DO NOT MODIFY THIS CODE ----- */
                 return getChallenge('assertion', {displayName, username})
                     .then((response) => {
                         let publicKey = preformatGetAssertReq(response);
@@ -537,6 +553,7 @@
                     })
             },
             'makeCredentialRK': () => {
+                /* ----- DO NOT MODIFY THIS CODE ----- */
                 regenerateNames()
                 let attestation = 'direct';
                 let authenticatorSelection = {
@@ -554,6 +571,7 @@
                     })
             },
             'getAssertionRK': () => {
+                /* ----- DO NOT MODIFY THIS CODE ----- */
                 return getChallenge('assertion', {displayName, username})
                     .then((response) => {
                         let publicKey = preformatGetAssertReq(response);
@@ -566,6 +584,7 @@
                     })
             },
             'makeCredentialRKMultiple': () => {
+                /* ----- DO NOT MODIFY THIS CODE ----- */
                 regenerateNames()
                 let attestation = 'direct';
                 let authenticatorSelection = {
@@ -605,6 +624,7 @@
                     })
             },
             'makeCredentialNONE': () => {
+                /* ----- DO NOT MODIFY THIS CODE ----- */
                 regenerateNames()
                 let attestation = 'none';
 
@@ -619,6 +639,7 @@
                     })
             },
             'makeCredentialPlatform': () => {
+                /* ----- DO NOT MODIFY THIS CODE ----- */
                 regenerateNames()
                 let attestation = 'direct';
                 let authenticatorSelection = {
@@ -636,6 +657,7 @@
                     })
             },
             'makeCredentialRKPlatform': () => {
+                /* ----- DO NOT MODIFY THIS CODE ----- */
                 regenerateNames()
                 let attestation = 'direct';
                 let authenticatorSelection = {
@@ -652,7 +674,12 @@
                         let makeCredResponse = publicKeyCredentialToJSON(response);
                         return sendWebAuthnResponse('attestation', makeCredResponse)
                     })
-            }
+            }            
+            /* ----- VENDORS AREA ----- */
+            /* YOU CAN ADD NEW TESTS METHODS HERE */
+            
+            
+            /* ----- VENDORS AREA ENDS ----- */
         }
     </script>
 </body>
