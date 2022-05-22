@@ -3,6 +3,7 @@
 <head>
     <title>FIDO2 Interop v1.0</title>
     <script>
+        /* Copyright (c) 2017 - 2022 Yuriy Ackermann @ FIDO Alliance <yuriy@fidoalliance.org> <ackermann.yuriy@gmail.com> */
         /* CHANGE ME TO YOUR SERVERS URL */
         /* CHANGE ME TO YOUR SERVERS URL */
         /* CHANGE ME TO YOUR SERVERS URL */
@@ -533,8 +534,11 @@
             'makeCredential': () => {
                 /* ----- DO NOT MODIFY THIS CODE ----- */
                 let attestation = 'direct';
+                let authenticatorSelection = {
+                    'authenticatorAttachment': 'cross-platform'
+                }
 
-                return getChallenge('attestation', {displayName, username, attestation})
+                return getChallenge('attestation', {displayName, username, attestation, authenticatorSelection})
                     .then((response) => {
                         let publicKey = preformatMakeCredReq(response);
                         return navigator.credentials.create({ publicKey })
@@ -561,6 +565,7 @@
                 regenerateNames()
                 let attestation = 'direct';
                 let authenticatorSelection = {
+                    'authenticatorAttachment': 'cross-platform',
                     'requireResidentKey': true
                 }
 
@@ -592,6 +597,7 @@
                 regenerateNames()
                 let attestation = 'direct';
                 let authenticatorSelection = {
+                    'authenticatorAttachment': 'cross-platform',
                     'requireResidentKey': true
                 }
 
@@ -631,8 +637,11 @@
                 /* ----- DO NOT MODIFY THIS CODE ----- */
                 regenerateNames()
                 let attestation = 'none';
+                let authenticatorSelection = {
+                    'authenticatorAttachment': 'cross-platform'
+                }
 
-                return getChallenge('attestation', { displayName, username, attestation })
+                return getChallenge('attestation', { displayName, username, attestation, authenticatorSelection })
                     .then((response) => {
                         let publicKey = preformatMakeCredReq(response);
                         return navigator.credentials.create({ publicKey })
