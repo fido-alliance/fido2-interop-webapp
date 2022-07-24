@@ -14,6 +14,14 @@
         /* CHANGE ME TO YOUR SERVERS URL */
         /* CHANGE ME TO YOUR SERVERS URL */
         /* CHANGE ME TO YOUR SERVERS URL */
+
+        /* Optional: Custom error handler override function */
+        function customErrorHandler(element, error) {
+            // the default is to return false unless you handle the error yourself
+            return false;
+        }
+
+
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css" integrity="sha256-Ro/wP8uUi8LR71kwIdilf78atpu8bTEwrK5ZotZo+Zc=" crossorigin="anonymous" />
     <style>
@@ -505,11 +513,13 @@
                     $($(this).children('div')[0]).addClass('hidden')
                 })
                 .catch((error) => {
-                    console.error('Error while running test! The message is: ', error)
-                    $(this).removeClass('success running')
-                    $(this).addClass('failed')
-                    $($(this).children('span')[0]).html('FAIL!')
-                    $($(this).children('div')[0]).addClass('hidden')
+                    if (typeof customErrorHandler == undefined || !customErrorHandler(this, error)) {
+                        console.error('Error while running test! The message is: ', error)
+                        $(this).removeClass('success running')
+                        $(this).addClass('failed')
+                        $($(this).children('span')[0]).html('FAIL!')
+                        $($(this).children('div')[0]).addClass('hidden')
+                    }
                 })
         })
 
