@@ -173,7 +173,13 @@
                 </div>
             </div>
             <div class="column">
-
+                <div class="formcontainer">
+                    <h5><b>Step 7</b><br/>Test GetAssertion for attestation NONE MakeCred</h5>
+                    <a href="#" class="button button-primary button locked" data-testid="getAssertionNONE" data-testdepid="makeCredentialNONE">
+                        <span>&#8592; Requires Step 6</span>
+                        <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
+                    </a>
+                </div>
             </div>
             <div class="column">
 
@@ -647,6 +653,18 @@
                     .then((response) => {
                         let makeCredResponse = publicKeyCredentialToJSON(response);
                         return sendWebAuthnResponse('attestation', makeCredResponse)
+                    })
+            },
+            'getAssertionNONE': () => {
+                /* ----- DO NOT MODIFY THIS CODE ----- */
+                return getChallenge('assertion', {displayName, username})
+                    .then((response) => {
+                        let publicKey = preformatGetAssertReq(response);
+                        return navigator.credentials.get({ publicKey })
+                    })
+                    .then((response) => {
+                        let getAssertionResponse = publicKeyCredentialToJSON(response);
+                        return sendWebAuthnResponse('assertion', getAssertionResponse)
                     })
             },
             'makeCredentialPlatform': () => {
