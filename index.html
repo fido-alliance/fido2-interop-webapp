@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FIDO2 Interop v1.0</title>
+    <title>FIDO2 Interop v1.1</title>
     <script>
         /* Copyright (c) 2017 - 2022 Yuriy Ackermann @ FIDO Alliance <yuriy@fidoalliance.org> <ackermann.yuriy@gmail.com> */
         /* CHANGE ME TO YOUR SERVERS URL */
@@ -32,11 +32,6 @@
             margin:0;
         }
 
-        .secretcontainer {
-            background: #f0f0f0;
-            padding: 15px;
-        }
-
         .mimimise {
             margin: 15px;
             height: 150px;
@@ -47,13 +42,16 @@
         }
 
         .running {
-            background: #EED202;
+            background: #606C76;
         }
         .failed {
             background: #960018;
         }
         .success {
             background: #228B22;
+        }
+        .locked {
+            background: #838383;
         }
 
         .lds-ring {
@@ -103,7 +101,7 @@
         <h3 class="vendor-name"></h3>
         <div class="row mimimise" style="height: 150px;">
             <div class="column">
-                <div class="formcontainer register">
+                <div class="formcontainer">
                     <div class="row">
                         <div class="column">
                             <h3>Username</h3>
@@ -119,8 +117,8 @@
         </div>
         <div class="row mimimise">
             <div class="column">
-                <div class="formcontainer register">
-                    <h4>Test MakeCredentials</h4>
+                <div class="formcontainer">
+                    <h5><b>Step 1</b><br/>Test MakeCredentials</h5>
                     <a href="#" class="button button-primary button" data-testid="makeCredential">
                         <span>Run</span>
                         <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
@@ -128,17 +126,17 @@
                 </div>
             </div>
             <div class="column">
-                <div class="formcontainer register">
-                    <h4>Test GetAssertion</h4>
-                    <a href="#" class="button button-primary button" data-testid="getAssertion">
-                        <span>Run</span>
+                <div class="formcontainer">
+                    <h5><b>Step 2</b><br/>Test GetAssertion</h4>
+                    <a href="#" class="button button-primary button locked" data-testid="getAssertion"  data-testdepid="makeCredential">
+                        <span>&#8592; Requires Step 1</span>
                         <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
                     </a>
                 </div>
             </div>
             <div class="column">
-                <div class="formcontainer register">
-                    <h4>Test MakeCredential with RK</h4>
+                <div class="formcontainer">
+                    <h5><b>Step 3</b><br/>Test MakeCredential with RK</h5>
                     <a href="#" class="button button-primary button" data-testid="makeCredentialRK">
                         <span>Run</span>
                         <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
@@ -146,10 +144,10 @@
                 </div>
             </div>
             <div class="column">
-                <div class="formcontainer register">
-                    <h4>Test GetAssertion with RK</h4>
-                    <a href="#" class="button button-primary button" data-testid="getAssertionRK">
-                        <span>Run</span>
+                <div class="formcontainer">
+                    <h5><b>Step 4</b><br/>Test GetAssertion with RK</h5>
+                    <a href="#" class="button button-primary button locked" data-testid="getAssertionRK" data-testdepid="makeCredentialRK">
+                        <span>&#8592; Requires Step 3</span>
                         <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
                     </a>
                 </div>
@@ -157,8 +155,8 @@
         </div>
         <div class="row mimimise">
             <div class="column">
-                <div class="formcontainer register">
-                    <h4>Test multi-cred RK</h4>
+                <div class="formcontainer">
+                    <h5><b>Step 5</b><br/>Test attestation & assertion with multiple RK credentials</h5>
                     <a href="#" class="button button-primary button" data-testid="makeCredentialRKMultiple">
                         <span>Run</span>
                         <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
@@ -166,8 +164,8 @@
                 </div>
             </div>
             <div class="column">
-                <div class="formcontainer register">
-                    <h4>Test MakeCredentials with attestation NONE</h4>
+                <div class="formcontainer">
+                    <h5><b>Step 6</b><br/>Test MakeCredentials with attestation NONE</h5>
                     <a href="#" class="button button-primary button" data-testid="makeCredentialNONE">
                         <span>Run</span>
                         <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
@@ -175,22 +173,16 @@
                 </div>
             </div>
             <div class="column">
-                <div class="formcontainer register">
-                    <h4>Test MakeCredential for Platform Authr</h4>
-                    <a href="#" class="button button-primary button" data-testid="makeCredentialPlatform">
-                        <span>Run</span>
+                <div class="formcontainer">
+                    <h5><b>Step 7</b><br/>Test GetAssertion for attestation NONE MakeCred</h5>
+                    <a href="#" class="button button-primary button locked" data-testid="getAssertionNONE" data-testdepid="makeCredentialNONE">
+                        <span>&#8592; Requires Step 6</span>
                         <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
                     </a>
                 </div>
             </div>
             <div class="column">
-                <div class="formcontainer register">
-                    <h4>Test MakeCredential with RK for Platform Authr</h4>
-                    <a href="#" class="button button-primary button" data-testid="makeCredentialRKPlatform">
-                        <span>Run</span>
-                        <div class="lds-ring hidden"><div></div><div></div><div></div><div></div></div>
-                    </a>
-                </div>
+
             </div>
         </div>
     </div>
@@ -488,11 +480,15 @@
         $('.button-primary').click(function(e) {
             /* ----- DO NOT MODIFY THIS CODE ----- */
             e.preventDefault()
+            if ($(this).hasClass('locked'))
+                return;
+
             let testid = $(this).data('testid');
 
             if(!tests[testid])
                 throw new Error(`${testid} is not implemented!`);
 
+            $(this).blur();
             $(this).removeClass('failed success')
             $(this).addClass('running')
             $($(this).children('span')[0]).html('Running')
@@ -503,6 +499,14 @@
                     $(this).addClass('success')
                     $($(this).children('span')[0]).html('Success!')
                     $($(this).children('div')[0]).addClass('hidden')
+                })
+                .then(() =>{
+                    $(".button.locked").each(function() {
+                        if ($(this).data('testdepid') == testid) {
+                            $(this).removeClass('locked', false);
+                            $($(this).children('span')[0]).html('RUN')
+                        }
+                    })
                 })
                 .catch((error) => {
                     console.error('Error while running test! The message is: ', error)
@@ -544,8 +548,8 @@
                         return navigator.credentials.create({ publicKey })
                     })
                     .then((response) => {
-                        let makeCredResponse = publicKeyCredentialToJSON(response);
-                        return sendWebAuthnResponse('attestation', makeCredResponse)
+                        let responseJson = publicKeyCredentialToJSON(response);
+                        return sendWebAuthnResponse('attestation', responseJson)
                     })
             },
             'getAssertion': () => {
@@ -556,8 +560,8 @@
                         return navigator.credentials.get({ publicKey })
                     })
                     .then((response) => {
-                        let makeCredResponse = publicKeyCredentialToJSON(response);
-                        return sendWebAuthnResponse('assertion', makeCredResponse)
+                        let getAssertionResponse = publicKeyCredentialToJSON(response);
+                        return sendWebAuthnResponse('assertion', getAssertionResponse)
                     })
             },
             'makeCredentialRK': () => {
@@ -588,8 +592,8 @@
                         return navigator.credentials.get({ publicKey })
                     })
                     .then((response) => {
-                        let makeCredResponse = publicKeyCredentialToJSON(response);
-                        return sendWebAuthnResponse('assertion', makeCredResponse)
+                        let getAssertionResponse = publicKeyCredentialToJSON(response);
+                        return sendWebAuthnResponse('assertion', getAssertionResponse)
                     })
             },
             'makeCredentialRKMultiple': () => {
@@ -629,8 +633,8 @@
                         return navigator.credentials.get({ publicKey })
                     })
                     .then((response) => {
-                        let makeCredResponse = publicKeyCredentialToJSON(response);
-                        return sendWebAuthnResponse('assertion', makeCredResponse)
+                        let getAssertionResponse = publicKeyCredentialToJSON(response);
+                        return sendWebAuthnResponse('assertion', getAssertionResponse)
                     })
             },
             'makeCredentialNONE': () => {
@@ -649,6 +653,18 @@
                     .then((response) => {
                         let makeCredResponse = publicKeyCredentialToJSON(response);
                         return sendWebAuthnResponse('attestation', makeCredResponse)
+                    })
+            },
+            'getAssertionNONE': () => {
+                /* ----- DO NOT MODIFY THIS CODE ----- */
+                return getChallenge('assertion', {displayName, username})
+                    .then((response) => {
+                        let publicKey = preformatGetAssertReq(response);
+                        return navigator.credentials.get({ publicKey })
+                    })
+                    .then((response) => {
+                        let getAssertionResponse = publicKeyCredentialToJSON(response);
+                        return sendWebAuthnResponse('assertion', getAssertionResponse)
                     })
             },
             'makeCredentialPlatform': () => {
