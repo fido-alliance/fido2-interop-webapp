@@ -554,7 +554,7 @@
             },
             'getAssertion': () => {
                 /* ----- DO NOT MODIFY THIS CODE ----- */
-                return getChallenge('assertion', {displayName, username})
+                return getChallenge('assertion', {username})
                     .then((response) => {
                         let publicKey = preformatGetAssertReq(response);
                         return navigator.credentials.get({ publicKey })
@@ -585,7 +585,7 @@
             },
             'getAssertionRK': () => {
                 /* ----- DO NOT MODIFY THIS CODE ----- */
-                return getChallenge('assertion', {displayName, username})
+                return getChallenge('assertion', {username})
                     .then((response) => {
                         let publicKey = preformatGetAssertReq(response);
                         publicKey = {'challenge': publicKey.challenge, 'rpId': publicKey.rpId}
@@ -626,7 +626,7 @@
                         let makeCredResponse = publicKeyCredentialToJSON(response);
                         return sendWebAuthnResponse('attestation', makeCredResponse)
                     })
-                    .then(() => getChallenge('assertion', {displayName, username}))
+                    .then(() => getChallenge('assertion', {username}))
                     .then((response) => {
                         let publicKey = preformatGetAssertReq(response);
                         publicKey = {'challenge': publicKey.challenge, 'rpId': publicKey.rpId}
@@ -657,7 +657,7 @@
             },
             'getAssertionNONE': () => {
                 /* ----- DO NOT MODIFY THIS CODE ----- */
-                return getChallenge('assertion', {displayName, username})
+                return getChallenge('assertion', {username})
                     .then((response) => {
                         let publicKey = preformatGetAssertReq(response);
                         return navigator.credentials.get({ publicKey })
